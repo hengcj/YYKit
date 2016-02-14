@@ -302,10 +302,7 @@ static YYKeychainQuerySynchronizationMode YYKeychainQuerySynchonizationEnum(NSNu
     item.service = serviceName;
     item.account = account;
     YYKeychainItem *result = [self selectOneItem:item error:error];
-    if (result) {
-        return  result.password;
-    }
-    return nil;
+    return result.password;
 }
 
 + (BOOL)deletePasswordForService:(NSString *)serviceName
@@ -392,9 +389,7 @@ static YYKeychainQuerySynchronizationMode YYKeychainQuerySynchonizationEnum(NSNu
     
     NSArray *arr = (__bridge NSArray *)(result);
     YYKeychainItem *newItem = nil;
-    if (arr.count && [arr isKindOfClass:[NSArray class]]) {
-        newItem = [[YYKeychainItem alloc] initWithDic:arr[0]];
-    }
+    if (arr.count) newItem = [[YYKeychainItem alloc] initWithDic:arr[0]];
     return newItem;
 }
 
